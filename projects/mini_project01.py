@@ -16,6 +16,9 @@ options = [["A. days, B. nights, C. dreams D. afternoons"],
 ]
 tries = 0
 quiz_options = 1
+ans = " "
+key = " "
+
 while tries < 3:
     
     for key in quiz_bank:
@@ -32,16 +35,19 @@ while tries < 3:
             print("*************************")
              
         elif tries == 3:
-            print(f"Sorry the answer was not {guess}") 
+            print(f"Sorry the answer was {quiz_bank.get(key)} not {guess}") 
             print("*************************")
                
         else:
             tries += 1
+            
             print("*************************")
             print("**** WRONG. TRY AGAIN! YOU GOT THIS! ****")
             print("*************************")
+            quiz_options-1
             break
-        quiz_options += 1   
         
+        quiz_options += 1   
+        print(quiz_bank.get(key))
 
 
