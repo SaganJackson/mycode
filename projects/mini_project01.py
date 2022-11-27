@@ -45,6 +45,7 @@ while tries < 3:
             print("**** WRONG. TRY AGAIN! YOU GOT THIS! ****")
             print("*************************")
             quiz_options-1
+            
             break
         
         quiz_options += 1   
