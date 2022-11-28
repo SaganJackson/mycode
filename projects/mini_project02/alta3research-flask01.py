@@ -44,9 +44,7 @@ def login():
 @app.route("/activity", methods = ["POST", "GET"])
 def activity():
     selected = request.form["participants"]
-    req = requests.get(url)
     req2 = requests.get(url2)
-    reqres = req.json()
     if request.method =="POST":
         if request.form.get("participants"):
             response = req2.json()["activity"]
@@ -57,7 +55,6 @@ def activity():
 def groupactivity():
     selected = request.form["participants2"]
     req = requests.get(url)
-    req2 = requests.get(url2)
     reqres = req.json()
     if request.method =="POST":
         if request.form.get("participants2"):
