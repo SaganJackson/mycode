@@ -8,8 +8,9 @@ from flask import render_template
 
 app = Flask(__name__)
 
-url="https://www.boredapi.com/api/activity"
-@app.route('/api')
+url="https://www.boredapi.com/api/activity?participants=4"
+url2= "https://www.boredapi.com/api/activity?participants=1"
+@app.route('/api', methods = ["POST", "GET"])
 def api():
     req = requests.get(url)
     reqres = req.json()
@@ -37,6 +38,32 @@ def login():
         else: # if nm was not passed...
             user = "defaultuser" # ...then user is just defaultuser
     return redirect(url_for("user", name = user)) # pass back to /success with val for name
+
+    
+
+@app.route("/activity", methods = ["POST", "GET"])
+def activity():
+    selected = request.form["participants"]
+    req = requests.get(url)
+    req2 = requests.get(url2)
+    reqres = req.json()
+    if request.method =="POST":
+        if request.form.get("participants"):
+            response = req2.json()["activity"]
+    return render_template("activity.html", selected=selected, response=response)    
+    
+
+@app.route("/groupactivity", methods = ["POST", "GET"])
+def groupactivity():
+    selected = request.form["participants2"]
+    req = requests.get(url)
+    req2 = requests.get(url2)
+    reqres = req.json()
+    if request.method =="POST":
+        if request.form.get("participants2"):
+            response = reqres["activity"]
+    return render_template("activity.html", selected=selected, response=response)   
+   
 
 
 

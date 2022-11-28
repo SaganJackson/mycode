@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import requests
 
-NASAAPI = 'http://127.0.0.1:2224/api'
+API = 'http://127.0.0.1:2224/api'
 
 # resp= requests.get(URL).json()
 
@@ -12,7 +12,7 @@ def main():
     ##nasacreds = returncreds()
 
     ## make a call to NASAAPI with our key
-    apodresp = requests.get(NASAAPI)
+    apodresp = requests.get(API)
 
     ## strip off json
     apod = apodresp.json()
