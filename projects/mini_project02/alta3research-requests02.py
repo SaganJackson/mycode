@@ -21,11 +21,11 @@ def main():
 
     print()
 
-    print(apod["activity"] + "\n")
+    print(f"Activity Description:", apod["activity"] + "\n")
 
-    print(apod["type"] + "\n")
+    print(f"Type of activity:", apod["type"] + "\n")
 
-    print(apod["participants"])
+    print(f"Number of Participants:", apod["participants"])
 
     print(apod["key"])
 
