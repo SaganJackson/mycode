@@ -34,7 +34,7 @@ def login():
     # GET would likely come from a user interacting with a browser
     elif request.method == "GET":
         if request.args.get("nm"): # if nm was assigned as a parameter=value
-            user = request.args.get("nm") # pull nm from localhost:5060/login?nm=larry
+            user = request.args.get("nm") 
         else: # if nm was not passed...
             user = "defaultuser" # ...then user is just defaultuser
     return redirect(url_for("user", name = user)) # pass back to /success with val for name
