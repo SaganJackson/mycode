@@ -3,6 +3,7 @@ from flask import redirect
 from flask import jsonify
 from flask import url_for
 from flask import request
+from flask import make_response
 import requests
 from flask import render_template
 
@@ -17,6 +18,8 @@ def api():
     return reqres
 @app.route('/user/<name>')
 def user(name):
+    # attempt to read the value of userID from user cookie
+    name=request.cookies.get("userID")
     return render_template("user.html", name=name)
 @app.route('/')
 def start():
@@ -29,8 +32,12 @@ def login():
     if request.method == "POST":
         if request.form.get("nm"): # if nm was assigned via the POST
             user = request.form.get("nm") # grab the value of nm from the POST
-        else: # if a user sent a post without nm then assign value defaultuser
+        else: # if a user sent a post without nm then assign value defaultuser           
             user = "defaultuser"
+        resp = make_response(redirect(url_for("user", name = user)))    
+        resp.set_cookie("userID", user)
+        # return our response object includes our cookie
+        return resp
     # GET would likely come from a user interacting with a browser
     elif request.method == "GET":
         if request.args.get("nm"): # if nm was assigned as a parameter=value
